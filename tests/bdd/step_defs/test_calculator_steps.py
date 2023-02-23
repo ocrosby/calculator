@@ -1,6 +1,6 @@
 from pytest_bdd import scenarios, given, when, then, parsers
 
-from calc.engine import Computer
+from calc import engine
 
 scenarios('../features/calculator.feature')
 
@@ -16,7 +16,7 @@ def expression_entry(world, expression: str):
 @when("I evaluate the expression")
 def evaluate(world):
     try:
-        world.result = world.computer.evaluate(world.expression)
+        world.result = engine.evaluate(world.expression)
     except Exception as err:
         world.errors.append(err)
 
