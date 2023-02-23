@@ -25,5 +25,5 @@ def evaluate(world):
 
 @then(parsers.parse('the result should be "{expected_value}"'))
 def compare_results(world, expected_value: str):
-    assert world.result == expected_value
+    assert str(world.result) == expected_value
 

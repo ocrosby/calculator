@@ -1,37 +1,25 @@
 import math
 
+from calc.parser import Parser, DivideByZeroException
 
-def evaluate(expression):
-    expression = list(expression[::-1])
+def evaluate(expression, vars = None):
+    try:
+        p = Parser(expression, vars)
+        value = p.getValue()
+    except DivideByZeroException as ex:
+        return "Divide by zero error"
 
-    def get_value():
-        sign = 1
-        if expression and expression[-1] == "-":
-            expression.pop()
-            sign = -1
-        value = 0
-        while expression and expression[-1].isdigit():
-            value *= 10
-            value += int(expression.pop())
-        return sign * value
 
-    def get_term():
-        term = get_value()
-        while expression and expression[-1] in "*/":
-            op = expression.pop()
-            value = get_value()
-            if op == "*":
-                term *= value
-            else:
-                term = math.floor(1.0 * term / value)
-        return term
+    # Return an integer type if the answer is an integer
+    if int(value) == value:
+        return int(value)
 
-    ans = get_term()
-    while expression:
-        op, term = expression.pop(), get_term()
-        if op == "+":
-            ans += term
-        else:
-            ans -= term
+    # If Python made some silly precision error like x.99999999999996, just return x+1 as an integer
+    epsilon = 0.0000000001
+    if int(value + epsilon) != int(value):
+        return int(value + epsilon)
 
-    return str(ans)
+    if int(value - epsilon) != int(value):
+        return int(value)
+
+    return value

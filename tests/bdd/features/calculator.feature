@@ -31,7 +31,12 @@ Feature: Calculator
     Scenario: Sine of 0
         Given I have entered the expression "sin(0)"
         When I evaluate the expression
-        Then the result should be "1"
+        Then the result should be "0"
+
+    Scenario: Cosine of 0
+        Given I have entered the expression "cos(0)"
+        When I evaluate the expression
+        Then the result should be "0"
 
     Scenario: Cosine of a number
         Given I have entered the expression "cos(0)"
