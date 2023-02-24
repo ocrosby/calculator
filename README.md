@@ -46,7 +46,7 @@ or
 > inv t
 
 
-# References
+## References
 
 * [pytest](https://docs.pytest.org/en/7.2.x/)
 * [pytest-mock](https://pytest-mock.readthedocs.io/en/latest/index.html)
