@@ -17,6 +17,10 @@ Once activated you will notice the virtual environment indicator ```(venv)``` in
 (venv) username:calculator name$
 ```
 
+Upgrading the version of Pip
+
+> pip install --upgrade pip
+
 Install the dependencies:
 
 > pip install -r requirements.txt
