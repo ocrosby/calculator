@@ -61,3 +61,4 @@ or
 * [Formatting Python Code with Black](https://black.readthedocs.io/en/stable/)
 * [Managing shell-oriented subprocesses via the Invoke CLI](https://www.pyinvoke.org/)
 * [Static Analysis with pycodestyle](https://pycodestyle.pycqa.org/en/latest/)
+* [Cognitive Complexity](https://www.sonarsource.com/docs/CognitiveComplexity.pdf)
