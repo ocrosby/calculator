@@ -37,3 +37,10 @@ or
 
 > inv l
 
+Executing Tests
+
+> invoke test
+
+or
+
+> inv t
