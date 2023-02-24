@@ -48,12 +48,12 @@ or
 
 ## References
 
-* [pytest](https://docs.pytest.org/en/7.2.x/)
-* [pytest-mock](https://pytest-mock.readthedocs.io/en/latest/index.html)
-* [pytest-bdd](https://pytest-bdd.readthedocs.io/en/stable/#)
+* [Testing with Pytest](https://docs.pytest.org/en/7.2.x/)
+* [Mocking dependencies during testing with pytest-mock](https://pytest-mock.readthedocs.io/en/latest/index.html)
+* [Behavioral Testing Plugin for Pytest](https://pytest-bdd.readthedocs.io/en/stable/#)
+* [Behavioral Testing with pytest-bdd](https://automationpanda.com/2018/10/22/python-testing-101-pytest-bdd/)
 * [Code Coverage with pytest-cov](https://pytest-cov.readthedocs.io/en/latest/reporting.html)
 * [Measuring Code Coverage with coverage.py](https://coverage.readthedocs.io/en/7.2.0/)
 * [Formatting Python Code with Black](https://black.readthedocs.io/en/stable/)
-* [Behavioral Testing with pytest-bdd](https://automationpanda.com/2018/10/22/python-testing-101-pytest-bdd/)
 * [Managing shell-oriented subprocesses via the Invoke CLI](https://www.pyinvoke.org/)
 * [Static Analysis with pycodestyle](https://pycodestyle.pycqa.org/en/latest/)
