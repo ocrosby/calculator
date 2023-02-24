@@ -55,5 +55,5 @@ or
 * [Measuring Code Coverage with coverage.py](https://coverage.readthedocs.io/en/7.2.0/)
 * [Formatting Python Code with Black](https://black.readthedocs.io/en/stable/)
 * [Behavioral Testing with pytest-bdd](https://automationpanda.com/2018/10/22/python-testing-101-pytest-bdd/)
-* [Invoke](https://www.pyinvoke.org/)
+* [Managing shell-oriented subprocesses via the Invoke CLI](https://www.pyinvoke.org/)
 * [Static Analysis with pycodestyle](https://pycodestyle.pycqa.org/en/latest/)
