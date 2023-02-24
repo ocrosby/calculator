@@ -53,7 +53,7 @@ or
 * [Behavioral Testing Plugin for Pytest](https://pytest-bdd.readthedocs.io/en/stable/#)
 * [Tutorial for Behavioral Testing in Pytest](https://automationpanda.com/2018/10/22/python-testing-101-pytest-bdd/)
 * [Code Coverage Plugin for Pytest](https://pytest-cov.readthedocs.io/en/latest/reporting.html)
-* [Measuring Code Coverage with coverage.py](https://coverage.readthedocs.io/en/7.2.0/)
+* [A tool for measuring code coverage in Python tests](https://coverage.readthedocs.io/en/7.2.0/)
 * [Formatting Python Code with Black](https://black.readthedocs.io/en/stable/)
 * [Managing shell-oriented subprocesses via the Invoke CLI](https://www.pyinvoke.org/)
 * [Static Analysis with pycodestyle](https://pycodestyle.pycqa.org/en/latest/)
