@@ -1,33 +1,30 @@
-from tkinter import *
 import math
 
-root = Tk()
-root.title('Scientific Calculator')
-root.config(bg='gray')
-root.geometry('870x550+50+50')
+from tkinter import *
 
-entryBox = Entry(root, font=('Comic Sans MS', 26, 'bold'), bg='gray', fg='white', bd=15, width=25, relief=GROOVE)
-entryBox.grid(row=0, column=0, columnspan=7)
+from calc.parser import Parser, DivideByZeroException
 
-button_list = ["x\u02b8", "C", "CE", "√", chr(247), "sinθ", "invsin",
-               "x\u00B2", "1", "2", "3", "*", "cosθ", "invcos",
-               "x\u00B3", "4", "5", "6", "-", "tanθ", "invtan",
-               "log₁₀", "7", "8", "9", "+", "deg", "rad",
-               "ln", "0", ".", "%", "=", "(", ")"]
-columnvalue = 0
-rowvalue = 1
+def evaluate(expression, vars = None):
+    try:
+        p = Parser(expression, vars)
+        value = p.getValue()
+    except DivideByZeroException as ex:
+        return "Divide by zero error"
 
-for i in button_list:
 
-    button = Button(root, width=6, height=3, bd=3, relief=GROOVE, text=i, bg='gray', fg='gray',
-                    font=('serif', 20, 'bold'), activebackground='gray',
-                    command=lambda button=i: button_clicked(button))
-    button.grid(row=rowvalue, column=columnvalue)
-    columnvalue += 1
-    if columnvalue > 6:
-        rowvalue += 1
-        columnvalue = 0
+    # Return an integer type if the answer is an integer
+    if int(value) == value:
+        return int(value)
 
+    # If Python made some silly precision error like x.99999999999996, just return x+1 as an integer
+    epsilon = 0.0000000001
+    if int(value + epsilon) != int(value):
+        return int(value + epsilon)
+
+    if int(value - epsilon) != int(value):
+        return int(value)
+
+    return value
 
 def button_clicked(value):
     entry_box_value = entryBox.get()
@@ -155,4 +152,33 @@ def findNumbers(t):
     return l
 
 
-root.mainloop()
+if __name__ == "__main__":
+    root = Tk()
+    root.title('Scientific Calculator')
+    root.config(bg='gray')
+    root.geometry('870x550+50+50')
+
+    entryBox = Entry(root, font=('Comic Sans MS', 26, 'bold'), bg='gray', fg='white', bd=15, width=25, relief=GROOVE)
+    entryBox.grid(row=0, column=0, columnspan=7)
+
+    button_list = ["x\u02b8", "C", "CE", "√", chr(247), "sinθ", "invsin",
+                   "x\u00B2", "1", "2", "3", "*", "cosθ", "invcos",
+                   "x\u00B3", "4", "5", "6", "-", "tanθ", "invtan",
+                   "log₁₀", "7", "8", "9", "+", "deg", "rad",
+                   "ln", "0", ".", "%", "=", "(", ")"]
+    columnvalue = 0
+    rowvalue = 1
+
+    for i in button_list:
+
+        button = Button(root, width=6, height=3, bd=3, relief=GROOVE, text=i, bg='gray', fg='gray',
+                        font=('serif', 20, 'bold'), activebackground='gray',
+                        command=lambda button=i: button_clicked(button))
+        button.grid(row=rowvalue, column=columnvalue)
+        columnvalue += 1
+        if columnvalue > 6:
+            rowvalue += 1
+            columnvalue = 0
+
+
+    root.mainloop()

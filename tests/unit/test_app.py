@@ -1,4 +1,4 @@
-from calc.engine import evaluate
+from calc.app import evaluate
 
 def test_add_1_1():
     assert evaluate('1+1') == 2

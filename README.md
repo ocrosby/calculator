@@ -5,16 +5,35 @@ A Python program implementing a calculator
 
 Setup a virtual environment for the project:
 
-    $ python3 -m venv venv
+> python3 -m venv venv
 
 Activate the virtual environment:
-    
-    $ source venv/bin/activate
 
+> source venv/bin/activate
+
+Once activated you will notice the virtual environment indicator ```(venv)``` in your terminal.  To deactivate the virtual environment simply enter ```deactivate``` from the terminal and you will notice that virtual environment indicator goes away, essentially that tells you that you are no longer in your virtual environment.
+
+```bash
+(venv) username:calculator name$
+```
 
 Install the dependencies:
-    
-        $ pip install -r requirements.txt
+
+> pip install -r requirements.txt
+
+Install the development dependencies:
+
+> pip install -r requirements-dev.txt
+
+
 
 ## Usage
+
+Executing Lint Checking
+
+> invoke lint
+
+or
+
+> inv l
 

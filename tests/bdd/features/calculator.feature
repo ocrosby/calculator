@@ -36,20 +36,20 @@ Feature: Calculator
     Scenario: Cosine of 0
         Given I have entered the expression "cos(0)"
         When I evaluate the expression
-        Then the result should be "0"
+        Then the result should be "1"
 
-    Scenario: Cosine of a number
-        Given I have entered the expression "cos(0)"
+    Scenario: Cosine of a pi
+        Given I have entered the expression "cos(pi)"
         When I evaluate the expression
-        Then the result should be "0"
+        Then the result should be "-1"
 
-    Scenario: Tangent of 50
-        Given I have entered the expression "tan(50)"
+    Scenario: Tangent of pi
+        Given I have entered the expression "tan(pi)"
         When I evaluate the expression
-        Then the result should be "1.1917535925944938"
+        Then the result should be within 0.1 of 0
 
     Scenario: Log of a 50
-      Given I have entered the expression "log(50)"
+      Given I have entered the expression "log10(50)"
       When I evaluate the expression
       Then the result should be "1.6989700043360187"
 
