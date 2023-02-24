@@ -51,6 +51,8 @@ or
 * [pytest](https://docs.pytest.org/en/7.2.x/)
 * [pytest-mock](https://pytest-mock.readthedocs.io/en/latest/index.html)
 * [pytest-bdd](https://pytest-bdd.readthedocs.io/en/stable/#)
+* [Code Coverage with pytest-cov](https://pytest-cov.readthedocs.io/en/latest/reporting.html)
+* [Measuring Code Coverage with coverage.py](https://coverage.readthedocs.io/en/7.2.0/)
 * [Formatting Python Code with Black](https://black.readthedocs.io/en/stable/)
 * [Behavioral Testing with pytest-bdd](https://automationpanda.com/2018/10/22/python-testing-101-pytest-bdd/)
 * [Invoke](https://www.pyinvoke.org/)
