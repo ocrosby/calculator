@@ -9,6 +9,7 @@ def read(fname):
     """Utility function to read the README file."""
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
+
 setup(name='Calculator',
       version='1.0',
       author='Hudson Collier',
@@ -22,5 +23,4 @@ setup(name='Calculator',
           "Development Status :: 3 - Alpha",
           "Topic :: Utilities",
           "License :: OSI Approved :: BSD License",
-      ]
-     )
+      ])
