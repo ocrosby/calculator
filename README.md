@@ -63,3 +63,4 @@ or
 * [Static Analysis with pycodestyle](https://pycodestyle.pycqa.org/en/latest/)
 * [Cognitive Complexity](https://www.sonarsource.com/docs/CognitiveComplexity.pdf)
 * [Distributing Packages Using SetupTools](https://packaging.python.org/en/latest/guides/distributing-packages-using-setuptools/)
+* [Research Paper on Object Oriented Lexical Analyzer](https://scholarworks.rit.edu/cgi/viewcontent.cgi?article=1662&context=article)

@@ -28,3 +28,20 @@ def no_errors(world):
             print(error)
 
     assert len(world.errors) == 0
+
+@then('there should be an error')
+def error(world):
+    assert len(world.errors) > 0
+
+
+@then(parsers.parse('I should see the error "{expected_value}"'))
+def error_message(world, expected_value: str):
+    assert len(world.errors) > 0
+
+    found = False
+    for error in world.errors:
+        if expected_value in str(error):
+            found = True
+            break
+
+    assert found

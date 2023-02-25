@@ -1,8 +1,6 @@
 import math
-import tkinter
 
-
-from src.parser import Parser, DivideByZeroException
+from calc.parser import Parser, DivideByZeroException
 
 def evaluate(expression, vars = None):
     try:
