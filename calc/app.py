@@ -1,8 +1,8 @@
 import math
+import tkinter
 
-from tkinter import *
 
-from calc.parser import Parser, DivideByZeroException
+from src.parser import Parser, DivideByZeroException
 
 def evaluate(expression, vars = None):
     try:
@@ -125,13 +125,11 @@ def mod(a, b):
 
 
 def lcm(a, b):
-    l = math.lcm(a, b)
-    return l
+    return math.lcm(a, b)
 
 
 def gcd(a, b):
-    h = math.gcd(a, b)
-    return h
+    return math.gcd(a, b)
 
 
 operations = {'ADD': add, 'ADDITION': add, 'SUM': add, 'PLUS': add,
@@ -142,14 +140,15 @@ operations = {'ADD': add, 'ADDITION': add, 'SUM': add, 'PLUS': add,
               'MOD': mod, 'REMAINDER': mod, 'MODULUS': mod}
 
 
-def findNumbers(t):
-    l = []
-    for num in t:
-        try:
-            l.append(int(num))
-        except ValueError:
-            pass
-    return l
+def find_numbers(t):
+    return [int(s) for s in t.split() if s.isdigit()]
+    # l = []
+    # for num in t:
+    #     try:
+    #         l.append(int(num))
+    #     except ValueError:
+    #         pass
+    # return l
 
 
 if __name__ == "__main__":
