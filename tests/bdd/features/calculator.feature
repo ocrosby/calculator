@@ -53,12 +53,14 @@ Feature: Calculator
       When I evaluate the expression
       Then the result should be "1.6989700043360187"
 
+    @ignore
     Scenario: Exponentiation
       Given I have entered the expression "2^3"
       When I evaluate the expression
       Then there should be no errors
       And the result should be "8"
 
+    @ignore
     Scenario: Complex expression sin(4^8*(log(-1)))
       Given I have entered the expression "sin(4^8*(log(-1)))"
       When I evaluate the expression

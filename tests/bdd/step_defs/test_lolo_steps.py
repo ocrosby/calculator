@@ -2,8 +2,8 @@ from pytest_bdd import scenario, given, when, then, parsers
 
 from calc.lolo import Set, Char
 
-SET_FEATURE = '../features/set.feature'
-CHAR_FEATURE = '../features/char.feature'
+SET_FEATURE = '../features/lolo/set.feature'
+CHAR_FEATURE = '../features/lolo/char.feature'
 
 @scenario(SET_FEATURE, 'Check if the character 1 belongs to the set of digits')
 def test_check_if_the_character_1_belongs_to_the_set_of_digits():
