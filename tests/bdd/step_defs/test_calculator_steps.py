@@ -3,7 +3,7 @@ from pytest_bdd import scenarios, given, when, then, parsers
 
 from calc import app
 
-scenarios('../features/calculator.feature')
+scenarios("../features/calculator.feature")
 
 # Given Steps
 
@@ -15,6 +15,7 @@ def expression_entry(world, expression: str):
 
 # When Steps
 
+
 @when("I evaluate the expression")
 def evaluate(world):
     try:
@@ -25,11 +26,15 @@ def evaluate(world):
 
 # Then Steps
 
+
 @then(parsers.parse('the result should be "{expected_value}"'))
 def compare_results(world, expected_value: str):
     assert str(world.result) == expected_value
 
-@then(parsers.parse('the result should be within {epsilon} of {expected_value}'))
+
+@then(
+    parsers.parse("the result should be within {epsilon} of {expected_value}")
+)
 def compare_results_almost(world, epsilon: str, expected_value: str):
     epsilon = float(epsilon)
     expected_value = float(expected_value)

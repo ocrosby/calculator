@@ -1,12 +1,13 @@
 from calc import lolo
 
+
 class TestSet:
     def test_next_char_contained(self):
         # Arrange
-        test_set = lolo.Set('abc', True)
+        test_set = lolo.Set("abc", True)
 
         # Act
-        state = test_set.next_char('a')
+        state = test_set.next_char("a")
 
         # Assert
         assert test_set.state_object.more == False
@@ -17,10 +18,10 @@ class TestSet:
 
     def test_next_char_not_contained(self):
         # Arrange
-        test_set = lolo.Set('abc', True)
+        test_set = lolo.Set("abc", True)
 
         # Act
-        state = test_set.next_char('d')
+        state = test_set.next_char("d")
 
         # Assert
         assert test_set.state_object.more == False
@@ -33,10 +34,10 @@ class TestSet:
 class TestChar:
     def test_next_char_any(self):
         # Arrange
-        test_char = lolo.Char('', False)
+        test_char = lolo.Char("", False)
 
         # Act
-        state = test_char.next_char('a')
+        state = test_char.next_char("a")
 
         # Assert
         assert test_char.state_object.more == False
@@ -47,10 +48,10 @@ class TestChar:
 
     def test_next_char_specific_match(self):
         # Arrange
-        test_char = lolo.Char('a', True)
+        test_char = lolo.Char("a", True)
 
         # Act
-        state = test_char.next_char('a')
+        state = test_char.next_char("a")
 
         # Assert
         assert test_char.state_object.more == False
@@ -61,10 +62,10 @@ class TestChar:
 
     def test_next_char_specific_no_match(self):
         # Arrange
-        test_char = lolo.Char('a')
+        test_char = lolo.Char("a")
 
         # Act
-        state = test_char.next_char('b')
+        state = test_char.next_char("b")
 
         # Assert
         assert test_char.state_object.more == False
