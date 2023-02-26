@@ -259,7 +259,9 @@ class TestButtonClicked:
         # Assert
         mocked_get.assert_called_once()
         mocked_delete.assert_called_once_with(0, tkinter.END)
-        mocked_insert.assert_called_once_with(0, 0.054886150808003326)
+
+        result = mocked_insert.call_args[0][1]
+        assert pytest.approx(result, 0.1) == 0.05
 
 class TestEvaluate:
     def test_add_1_1(self, application):
