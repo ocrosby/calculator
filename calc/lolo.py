@@ -112,3 +112,40 @@ class SetMN(Set):
             self.state_object.found = False
 
         return self.state_object
+
+class Int(SetMN):
+    """Int is a Scan that recognizes an integer."""
+
+    def __init__(self, max_digits: int):
+        super().__init__(_set="0123456789", inside=True, m=1, n=max_digits)
+
+
+class Word(Scan):
+    """Word is a Scan that recognizes a word."""
+
+    word: str
+    index: int
+
+    def __init__(self, word: str):
+        super().__init__()
+
+        self.word = word
+        self.index = 0
+
+    def reset(self):
+        super().reset()
+
+        self.index = 0
+
+    def next_char(self, char: str) -> State:
+        current_char = self.word[self.index]
+        self.index += 1
+
+        if current_char == char:
+            self.state_object.more = self.index < len(self.word)
+            self.state_object.found = self.index == len(self.word)
+        else:
+            self.state_object.more = False
+            self.state_object.found = False
+
+        return self.state_object

@@ -41,6 +41,42 @@ class TestState:
         # Assert
         assert state_string == "State(more=True, found=False)"
 
+class TestWord:
+    def test_case1(self):
+        # Arrange
+        test_word = lolo.Word("abc")
+
+        # Act
+        state = test_word.next_char("a")
+
+        # Assert
+        assert state.more == True
+        assert state.found == False
+
+    def test_case2(self):
+        # Arrange
+        test_word = lolo.Word("abc")
+
+        # Act
+        state = test_word.next_char("a")
+        state = test_word.next_char("b")
+
+        # Assert
+        assert state.more == True
+        assert state.found == False
+
+    def test_case3(self):
+        # Arrange
+        test_word = lolo.Word("abc")
+
+        # Act
+        state = test_word.next_char("a")
+        state = test_word.next_char("b")
+        state = test_word.next_char("c")
+
+        # Assert
+        assert state.more == False
+        assert state.found == True
 
 class TestSet:
     def test_next_char_contained(self):

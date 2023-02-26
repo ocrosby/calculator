@@ -3,6 +3,11 @@ from tkinter import Tk, END, Button, GROOVE, Entry
 
 from calc.parser import Parser, DivideByZeroException
 
+BUTTONS = ["x\u02b8", "C", "CE", "√", chr(247), "sinθ", "invsin",
+           "x\u00B2", "1", "2", "3", "*", "cosθ", "invcos",
+           "x\u00B3", "4", "5", "6", "-", "tanθ", "invtan",
+           "log₁₀", "7", "8", "9", "+", "deg", "rad",
+           "ln", "0", ".", "%", "=", "(", ")"]
 
 class App:
     def __init__(self, root: any, entry_box):
@@ -176,9 +181,8 @@ def create_button(app, root, caption: str):
     return button
 
 
-if __name__ == "__main__":
-    root = Tk()
-    entry_box = Entry(root,
+def main(_root):
+    entry_box = Entry(_root,
                       font=('Comic Sans MS', 26, 'bold'),
                       bg='gray',
                       fg='white',
@@ -186,28 +190,27 @@ if __name__ == "__main__":
                       width=25,
                       relief=GROOVE)
 
-    configure_root(root)
+    configure_root(_root)
 
-    app = App(root, entry_box)
-
+    app = App(_root, entry_box)
 
     entry_box.grid(row=0, column=0, columnspan=7)
 
-    button_list = ["x\u02b8", "C", "CE", "√", chr(247), "sinθ", "invsin",
-                   "x\u00B2", "1", "2", "3", "*", "cosθ", "invcos",
-                   "x\u00B3", "4", "5", "6", "-", "tanθ", "invtan",
-                   "log₁₀", "7", "8", "9", "+", "deg", "rad",
-                   "ln", "0", ".", "%", "=", "(", ")"]
     column_value = 0
     row_value = 1
 
-    for i in button_list:
-        button = create_button(app, root, i)
+    for i in BUTTONS:
+        button = create_button(app, _root, i)
         button.grid(row=row_value, column=column_value)
         column_value += 1
         if column_value > 6:
             row_value += 1
             column_value = 0
 
+
+if __name__ == "__main__":
+    root = Tk()
+
+    main(root)
 
     root.mainloop()
