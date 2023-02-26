@@ -1,6 +1,10 @@
 import math
+from tkinter import Tk, END, Button, GROOVE, Entry
 
 from calc.parser import Parser, DivideByZeroException
+
+root = Tk()
+entryBox = Entry(root, font=('Comic Sans MS', 26, 'bold'), bg='gray', fg='white', bd=15, width=25, relief=GROOVE)
 
 def evaluate(expression, vars = None):
     try:
@@ -41,7 +45,8 @@ def button_clicked(value):
             answer = eval(entry_box_value) ** 3
 
         elif value == 'log₁₀':
-            answer = math.log10(eval(entry_box_value))
+            __x = eval(entry_box_value)
+            answer = math.log10(__x)
 
         elif value == 'ln':
             answer = math.log2(eval(entry_box_value))
@@ -150,12 +155,10 @@ def find_numbers(t):
 
 
 if __name__ == "__main__":
-    root = Tk()
     root.title('Scientific Calculator')
     root.config(bg='gray')
     root.geometry('870x550+50+50')
 
-    entryBox = Entry(root, font=('Comic Sans MS', 26, 'bold'), bg='gray', fg='white', bd=15, width=25, relief=GROOVE)
     entryBox.grid(row=0, column=0, columnspan=7)
 
     button_list = ["x\u02b8", "C", "CE", "√", chr(247), "sinθ", "invsin",
