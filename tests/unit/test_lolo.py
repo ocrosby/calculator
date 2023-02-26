@@ -78,6 +78,16 @@ class TestWord:
         assert state.more == False
         assert state.found == True
 
+    def test_mismatch(self):
+        # Arrange
+        test_word = lolo.Word("abc")
+
+        # Act
+        state = test_word.next_char("z")
+        # Assert
+        assert state.more == False
+        assert state.found == False
+
 class TestSet:
     def test_next_char_contained(self):
         # Arrange
