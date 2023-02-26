@@ -1,6 +1,9 @@
 # Calculator
 A Python program implementing a calculator
 
+![Test](https://github.com/ocrosby/calculator/actions/workflows/ci.yml/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/ocrosby/calculator/badge.svg?branch=main)](https://coveralls.io/github/ocrosby/calculator?branch=main)
+
 ## Setup
 
 Setup a virtual environment for the project:
