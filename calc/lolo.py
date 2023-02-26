@@ -80,6 +80,7 @@ class SetMN(Set):
     def __init__(self, _set: str, inside: bool, m: int, n: int):
         super().__init__(_set, inside)
 
+        self.jog = 0
         self.m = m
         self.n = n
 
@@ -90,10 +91,16 @@ class SetMN(Set):
 
     def next_char(self, char: str) -> State:
         self.jog += 1
-        b = self.set.find(char) >= 0
 
-        return self.state_object.set(
-            more=b and self.jog < self.n,
-            found=b and self.jog >= self.m
-        )
+        position = self.set.find(char)
+        char_found = position >= 0
+
+        if char_found:
+            self.state_object.more = self.jog < self.n
+            self.state_object.found = self.jog >= self.m
+        else:
+            self.state_object.more = False
+            self.state_object.found = False
+
+        return self.state_object
 

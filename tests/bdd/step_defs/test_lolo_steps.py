@@ -1,8 +1,9 @@
 from pytest_bdd import scenario, given, when, then, parsers
 
-from calc.lolo import Set, Char
+from calc.lolo import Char, Set, SetMN
 
 SET_FEATURE = '../features/lolo/set.feature'
+SETMN_Feature = '../features/lolo/setmn.feature'
 CHAR_FEATURE = '../features/lolo/char.feature'
 
 @scenario(SET_FEATURE, 'Check if the character 1 belongs to the set of digits')
@@ -15,6 +16,10 @@ def test_check_if_the_character_a_belongs_to_the_set_of_digits():
 
 @scenario(SET_FEATURE, 'Check if the character ( belongs to the compliment of the set of digits')
 def test_check_if_the_character_left_paren_does_not_belong_to_the_set_of_digits():
+    pass
+
+@scenario(SETMN_Feature, 'Recognize a set of characters from 2 to 3')
+def test_recognize_a_set_of_characters_from_2_to_3():
     pass
 
 @scenario(CHAR_FEATURE, 'Check if the Char scan matches a single arbitrary character 1')
@@ -36,6 +41,11 @@ def test_char_scan_specific_matches_q():
 @given("a set of digits")
 def a_set_of_digits(world):
     world.scan = Set('0123456789')
+
+@given(parsers.parse('a set of characters {chars} from {min:d} to {max:d}'))
+def a_set_of_characters_from_to(world, chars: str, min: int, max: int):
+    chars = chars.replace('"', '')
+    world.scan = SetMN(chars, True, min, max)
 
 @given('a Char matching anything')
 def a_char_matching_anything(world):
@@ -63,6 +73,16 @@ def the_next_character_is(world, char: str):
         world.result = world.scan.next_char(char)
     except Exception as err:
         world.errors.append(err)
+
+@when(parsers.parse('the characters {chars} are scanned'))
+def the_characters_are_scanned(world, chars: str):
+    chars = chars.replace('"', '')
+
+    for char in chars:
+        try:
+            world.result = world.scan.next_char(char)
+        except Exception as err:
+            world.errors.append(err)
 
 @then("I should be told that it does")
 def i_should_be_told_that_it_does(world):
