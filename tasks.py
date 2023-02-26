@@ -4,7 +4,16 @@ from invoke import task
 @task(aliases=["c"])
 def clean(c):
     print("Cleaning up...")
-    # Todo: Delete any temporary files
+    c.run("rm -f *.png")
+    c.run("rm -rf coverage")
+    c.run("rm -rf dist")
+    c.run("rm -f .coverage")
+    c.run("rm -f coverage.xml")
+    c.run("rm -rf htmlcov")
+    c.run("rm -rf tests/htmlcov")
+    c.run("rm -rf tests/.pytest_cache")
+    c.run("rm -rf ./.pytest_cache")
+    c.run("rm -f tests/coverage.xml")
 
 
 @task(aliases="f", optional=["check"])
@@ -38,6 +47,11 @@ def test(c):
     print("Testing...")
     return c.run("pytest")
 
+@task(aliases=["v"])
+def coverage(c):
+    """Runs PyTest unit and integration tests with coverage."""
+    c.run("coverage run -m pytest")
+    c.run("coverage lcov -o ./coverage/lcov.info")
 
 @task(aliases=["p"], pre=[lint, check_format], default=True)
 def pre_check(c):
