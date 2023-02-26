@@ -92,6 +92,23 @@ class TestButtonClicked:
         mocked_delete.assert_called_once_with(0, tkinter.END)
         mocked_insert.assert_called_once_with(0, expected_result)
 
+    def test_CE(self, mocker):
+        expected_result = ''
+        function_name = "CE"
+
+        # Arrange
+        mocked_get = mocker.patch.object(app.entryBox, "get", return_value=None)
+        mocked_delete = mocker.patch.object(app.entryBox, "delete")
+        mocked_insert = mocker.patch.object(app.entryBox, "insert")
+
+        # Act
+        app.button_clicked(function_name)
+
+        # Assert
+        mocked_get.assert_called_once()
+        assert mocked_delete.call_count == 2
+        mocked_insert.assert_called_once_with(0, expected_result)
+
 def test_add_1_1():
     assert evaluate("1+1") == 2
 
