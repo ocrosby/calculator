@@ -1,5 +1,46 @@
 from calc import lolo
 
+class TestState:
+    def test_false_false(self):
+        # Arrange
+        state = lolo.State.create(False, False)
+
+        # Act
+        state_string = str(state)
+
+        # Assert
+        assert state_string == "State(more=False, found=False)"
+
+    def test_true_true(self):
+        # Arrange
+        state = lolo.State.create(True, True)
+
+        # Act
+        state_string = str(state)
+
+        # Assert
+        assert state_string == "State(more=True, found=True)"
+
+    def test_false_true(self):
+        # Arrange
+        state = lolo.State.create(False, True)
+
+        # Act
+        state_string = str(state)
+
+        # Assert
+        assert state_string == "State(more=False, found=True)"
+
+    def test_true_false(self):
+        # Arrange
+        state = lolo.State.create(True, False)
+
+        # Act
+        state_string = str(state)
+
+        # Assert
+        assert state_string == "State(more=True, found=False)"
+
 
 class TestSet:
     def test_next_char_contained(self):

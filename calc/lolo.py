@@ -12,6 +12,10 @@ class State:
 
         return self
 
+    @staticmethod
+    def create(more: bool = False, found: bool = False) -> "State":
+        return State().set(more=more, found=found)
+
     def __str__(self) -> str:
         return f"State(more={self.more}, found={self.found})"
 
