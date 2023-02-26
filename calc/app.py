@@ -156,17 +156,40 @@ class App:
         #         pass
         # return l
 
-
-if __name__ == "__main__":
-    root = Tk()
-    entry_box = Entry(root, font=('Comic Sans MS', 26, 'bold'), bg='gray', fg='white', bd=15, width=25,
-                      relief=GROOVE)
-
-    app = App(root, entry_box)
-
+def configure_root(root):
     root.title('Scientific Calculator')
     root.config(bg='gray')
     root.geometry('870x550+50+50')
+
+def create_button(app, root, caption: str):
+    button = Button(root,
+                    width=6,
+                    height=3,
+                    bd=3,
+                    relief=GROOVE,
+                    text=caption,
+                    bg='gray',
+                    fg='gray',
+                    font=('serif', 20, 'bold'),
+                    activebackground='gray',
+                    command=lambda button=caption: app.button_clicked(button))
+    return button
+
+
+if __name__ == "__main__":
+    root = Tk()
+    entry_box = Entry(root,
+                      font=('Comic Sans MS', 26, 'bold'),
+                      bg='gray',
+                      fg='white',
+                      bd=15,
+                      width=25,
+                      relief=GROOVE)
+
+    configure_root(root)
+
+    app = App(root, entry_box)
+
 
     entry_box.grid(row=0, column=0, columnspan=7)
 
@@ -175,19 +198,16 @@ if __name__ == "__main__":
                    "x\u00B3", "4", "5", "6", "-", "tanθ", "invtan",
                    "log₁₀", "7", "8", "9", "+", "deg", "rad",
                    "ln", "0", ".", "%", "=", "(", ")"]
-    columnvalue = 0
-    rowvalue = 1
+    column_value = 0
+    row_value = 1
 
     for i in button_list:
-
-        button = Button(root, width=6, height=3, bd=3, relief=GROOVE, text=i, bg='gray', fg='gray',
-                        font=('serif', 20, 'bold'), activebackground='gray',
-                        command=lambda button=i: app.button_clicked(button))
-        button.grid(row=rowvalue, column=columnvalue)
-        columnvalue += 1
-        if columnvalue > 6:
-            rowvalue += 1
-            columnvalue = 0
+        button = create_button(app, root, i)
+        button.grid(row=row_value, column=column_value)
+        column_value += 1
+        if column_value > 6:
+            row_value += 1
+            column_value = 0
 
 
     root.mainloop()
