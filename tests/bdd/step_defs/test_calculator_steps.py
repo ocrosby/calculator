@@ -17,9 +17,9 @@ def expression_entry(world, expression: str):
 
 
 @when("I evaluate the expression")
-def evaluate(world):
+def evaluate(world, application):
     try:
-        world.result = app.evaluate(world.expression)
+        world.result = application.evaluate(world.expression)
     except Exception as err:
         world.errors.append(err)
 

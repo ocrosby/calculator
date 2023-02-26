@@ -1,185 +1,179 @@
+import pytest
+
 import math
 import tkinter
-
-from calc import app
-from calc.app import evaluate, button_clicked
+import mock
 
 
 class TestButtonClicked:
-    def test_log_base_10(self, mocker):
+    def test_log_base_10(self, application, mocker):
         # Arrange
-        mocked_get = mocker.patch.object(app.entryBox, "get", return_value="2.3")
-        mocked_delete = mocker.patch.object(app.entryBox, "delete")
-        mocked_insert = mocker.patch.object(app.entryBox, "insert")
+        mocked_get = mocker.patch.object(application.entry_box, "get", return_value="2.3")
+        mocked_delete = mocker.patch.object(application.entry_box, "delete")
+        mocked_insert = mocker.patch.object(application.entry_box, "insert")
 
         # Act
-        app.button_clicked("log₁₀")
+        application.button_clicked("log₁₀")
 
         # Assert
         mocked_get.assert_called_once()
         mocked_delete.assert_called_once_with(0, tkinter.END)
         mocked_insert.assert_called_once_with(0, 0.36172783601759284)
 
-    def test_sin_0(self, mocker):
+    def test_sin_0(self, application, mocker):
         x_value = "0"
         expected_result = 0
         function_name = "sinθ"
 
         # Arrange
-        mocked_get = mocker.patch.object(app.entryBox, "get", return_value=x_value)
-        mocked_delete = mocker.patch.object(app.entryBox, "delete")
-        mocked_insert = mocker.patch.object(app.entryBox, "insert")
+        mocked_get = mocker.patch.object(application.entry_box, "get", return_value=x_value)
+        mocked_delete = mocker.patch.object(application.entry_box, "delete")
+        mocked_insert = mocker.patch.object(application.entry_box, "insert")
 
         # Act
-        app.button_clicked(function_name)
+        application.button_clicked(function_name)
 
         # Assert
         mocked_get.assert_called_once()
         mocked_delete.assert_called_once_with(0, tkinter.END)
         mocked_insert.assert_called_once_with(0, expected_result)
 
-    def test_cos_0(self, mocker):
+    def test_cos_0(self, application, mocker):
         x_value = "0"
         expected_result = 1
         function_name = "cosθ"
 
         # Arrange
-        mocked_get = mocker.patch.object(app.entryBox, "get", return_value=x_value)
-        mocked_delete = mocker.patch.object(app.entryBox, "delete")
-        mocked_insert = mocker.patch.object(app.entryBox, "insert")
+        mocked_get = mocker.patch.object(application.entry_box, "get", return_value=x_value)
+        mocked_delete = mocker.patch.object(application.entry_box, "delete")
+        mocked_insert = mocker.patch.object(application.entry_box, "insert")
 
         # Act
-        app.button_clicked(function_name)
+        application.button_clicked(function_name)
 
         # Assert
         mocked_get.assert_called_once()
         mocked_delete.assert_called_once_with(0, tkinter.END)
         mocked_insert.assert_called_once_with(0, expected_result)
 
-    def test_radians_180_degrees(self, mocker):
+    def test_radians_180_degrees(self, application, mocker):
         x_value = "180"
         expected_result = math.pi
         function_name = "rad"
 
         # Arrange
-        mocked_get = mocker.patch.object(app.entryBox, "get", return_value=x_value)
-        mocked_delete = mocker.patch.object(app.entryBox, "delete")
-        mocked_insert = mocker.patch.object(app.entryBox, "insert")
+        mocked_get = mocker.patch.object(application.entry_box, "get", return_value=x_value)
+        mocked_delete = mocker.patch.object(application.entry_box, "delete")
+        mocked_insert = mocker.patch.object(application.entry_box, "insert")
 
         # Act
-        app.button_clicked(function_name)
+        application.button_clicked(function_name)
 
         # Assert
         mocked_get.assert_called_once()
         mocked_delete.assert_called_once_with(0, tkinter.END)
         mocked_insert.assert_called_once_with(0, expected_result)
 
-    def test_degrees_pi_radians(self, mocker):
-        x_value = str(math.pi)
-        expected_result = 180
-        function_name = "deg"
-
+    def test_degrees_pi_radians(self, application, mocker):
         # Arrange
-        mocked_get = mocker.patch.object(app.entryBox, "get", return_value=x_value)
-        mocked_delete = mocker.patch.object(app.entryBox, "delete")
-        mocked_insert = mocker.patch.object(app.entryBox, "insert")
+        mocked_get = mocker.patch.object(application.entry_box, "get", return_value=str(math.pi))
+        mocked_delete = mocker.patch.object(application.entry_box, "delete")
+        mocked_insert = mocker.patch.object(application.entry_box, "insert")
 
         # Act
-        app.button_clicked(function_name)
+        application.button_clicked('deg')
 
         # Assert
         mocked_get.assert_called_once()
         mocked_delete.assert_called_once_with(0, tkinter.END)
-        mocked_insert.assert_called_once_with(0, expected_result)
+        mocked_insert.assert_called_once_with(0, 180)
 
-    def test_CE(self, mocker):
-        expected_result = ''
-        function_name = "CE"
-
+    def test_ce(self, application, mocker):
         # Arrange
-        mocked_get = mocker.patch.object(app.entryBox, "get", return_value=None)
-        mocked_delete = mocker.patch.object(app.entryBox, "delete")
-        mocked_insert = mocker.patch.object(app.entryBox, "insert")
+        mocked_get = mocker.patch.object(application.entry_box, "get", return_value='')
+        mocked_delete = mocker.patch.object(application.entry_box, "delete")
+        mocked_insert = mocker.patch.object(application.entry_box, "insert")
 
         # Act
-        app.button_clicked(function_name)
+        application.button_clicked('CE')
 
         # Assert
         mocked_get.assert_called_once()
         assert mocked_delete.call_count == 2
-        mocked_insert.assert_called_once_with(0, expected_result)
+        mocked_insert.assert_called_once_with(0, '')
 
-def test_add_1_1():
-    assert evaluate("1+1") == 2
-
-
-def test_add_1_2():
-    assert evaluate("1+2") == 3
+class TestEvaluate:
+    def test_add_1_1(self, application):
+        assert application.evaluate("1+1") == 2
 
 
-def test_subtract_1_1():
-    assert evaluate("1-1") == 0
+    def test_add_1_2(self, application):
+        assert application.evaluate("1+2") == 3
 
 
-def test_subtract_1_2():
-    assert evaluate("1-2") == -1
+    def test_subtract_1_1(self, application):
+        assert application.evaluate("1-1") == 0
 
 
-def test_multiply_1_1():
-    assert evaluate("1*1") == 1
+    def test_subtract_1_2(self, application):
+        assert application.evaluate("1-2") == -1
 
 
-def test_multiply_1_2():
-    assert evaluate("1*2") == 2
+    def test_multiply_1_1(self, application):
+        assert application.evaluate("1*1") == 1
 
 
-def test_divide_1_1():
-    assert evaluate("1/1") == 1
+    def test_multiply_1_2(self, application):
+        assert application.evaluate("1*2") == 2
 
 
-def test_divide_1_2():
-    assert evaluate("1/2") == 0.5
+    def test_divide_1_1(self, application):
+        assert application.evaluate("1/1") == 1
 
 
-def test_divide_2_1():
-    assert evaluate("2/1") == 2
+    def test_divide_1_2(self, application):
+        assert application.evaluate("1/2") == 0.5
 
 
-def test_divide_by_zero():
-    assert evaluate("1/0") == "Divide by zero error"
+    def test_divide_2_1(self, application):
+        assert application.evaluate("2/1") == 2
 
 
-def test_cos_0():
-    assert evaluate("cos(0)") == 1
+    def test_divide_by_zero(self, application):
+        assert application.evaluate("1/0") == "Divide by zero error"
 
 
-def test_cos_90():
-    assert evaluate("cos(90)") == -0.4480736161291701
+    def test_cos_0(self, application):
+        assert application.evaluate("cos(0)") == 1
 
 
-def test_cos_pi_times_1():
-    assert evaluate("cos(pi) * 1") == -1
+    def test_cos_90(self, application):
+        assert application.evaluate("cos(90)") == -0.4480736161291701
 
 
-def test_sin_0():
-    assert evaluate("sin(0)") == 0
+    def test_cos_pi_times_1(self, application):
+        assert application.evaluate("cos(pi) * 1") == -1
 
 
-def test_atan2_2_1():
-    assert evaluate("atan2(2, 1)") == 1.1071487177940904
+    def test_sin_0(self, application):
+        assert application.evaluate("sin(0)") == 0
 
 
-def test_pow_3_5():
-    assert evaluate("pow(3, 5)") == 243
+    def test_atan2_2_1(self, application):
+        assert application.evaluate("atan2(2, 1)") == 1.1071487177940904
 
 
-def test_abs_negative_2():
-    assert evaluate("abs(-2)") == 2
+    def test_pow_3_5(self, application):
+        assert application.evaluate("pow(3, 5)") == 243
 
 
-def test_abs_2():
-    assert evaluate("abs(2)") == 2
+    def test_abs_negative_2(self, application):
+        assert application.evaluate("abs(-2)") == 2
 
 
-def test_expression_case1():
-    assert evaluate("-(1 + 2) * 3") == -9
+    def test_abs_2(self, application):
+        assert application.evaluate("abs(2)") == 2
+
+
+    def test_expression_case1(self, application):
+        assert application.evaluate("-(1 + 2) * 3") == -9
