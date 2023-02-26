@@ -6,14 +6,15 @@ class State:
         self.more = False
         self.found = False
 
-    def set(self, found: bool, more: bool = False) -> 'State':
+    def set(self, found: bool, more: bool = False) -> "State":
         self.found = found
         self.more = more
 
         return self
 
     def __str__(self) -> str:
-        return f'State(more={self.more}, found={self.found})'
+        return f"State(more={self.more}, found={self.found})"
+
 
 class Scan:
     """Scan is the abstract base class for all recognizers.  If scan() is sent to a Scanner,
@@ -23,6 +24,7 @@ class Scan:
     characters can be added to the symbol.  Scanner uses Scan.state to mark the Input and
     terminate pushing characters.
     """
+
     state_object: State
 
     def __init__(self):
@@ -34,6 +36,7 @@ class Scan:
 
 class Set(Scan):
     """Set objects recognize a single character that does or does not belong to a set."""
+
     set: str
     inside: bool
 
@@ -60,9 +63,11 @@ class Set(Scan):
 
         return self.state_object
 
+
 class Char(Set):
     """Char is a Scan that recognizes a single character.
     If the char is empty it should match any character."""
+
     def __init__(self, _set: str = "", inside: bool = True):
         super().__init__(_set=_set, inside=inside)
 
@@ -103,4 +108,3 @@ class SetMN(Set):
             self.state_object.found = False
 
         return self.state_object
-
