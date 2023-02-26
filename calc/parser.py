@@ -25,7 +25,7 @@ _FUNCTIONS = {
     'ldexp': math.ldexp,
     'log': math.log,
     'log10': math.log10,
-    'ln': math.log,
+    'ln': math.log2,
     'modf': math.modf,
     'pow': math.pow,
     'radians': math.radians,
