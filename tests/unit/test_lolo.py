@@ -58,7 +58,7 @@ class TestWord:
         test_word = lolo.Word("abc")
 
         # Act
-        state = test_word.next_char("a")
+        test_word.next_char("a")
         state = test_word.next_char("b")
 
         # Assert
@@ -70,8 +70,8 @@ class TestWord:
         test_word = lolo.Word("abc")
 
         # Act
-        state = test_word.next_char("a")
-        state = test_word.next_char("b")
+        test_word.next_char("a")
+        test_word.next_char("b")
         state = test_word.next_char("c")
 
         # Assert
@@ -87,6 +87,23 @@ class TestWord:
         # Assert
         assert state.more == False
         assert state.found == False
+
+    def test_reset(self):
+        # Arrange
+        test_word = lolo.Word("abc")
+
+        test_word.next_char("a")
+        test_word.next_char("b")
+        state = test_word.next_char("c")
+
+        # Act
+        test_word.reset()
+
+        # Assert
+        assert state.more == False
+        assert state.found == False
+        assert test_word.word == "abc"
+        assert test_word.index == 0
 
 class TestSet:
     def test_next_char_contained(self):
