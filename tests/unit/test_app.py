@@ -150,10 +150,17 @@ class TestEvaluate:
     def test_cos_90(self, application):
         assert application.evaluate("cos(90)") == -0.4480736161291701
 
+    def test_ln_1(self, application):
+        assert application.evaluate("ln(1)") == 0
 
     def test_cos_pi_times_1(self, application):
         assert application.evaluate("cos(pi) * 1") == -1
 
+    def test_tan_pi(self, application):
+        assert pytest.approx(application.evaluate("tan(pi)"), 0.000001) == 0
+
+    def test_sqrt_4(self, application):
+        assert application.evaluate("sqrt(4)") == 2
 
     def test_sin_0(self, application):
         assert application.evaluate("sin(0)") == 0
