@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/cucumber/godog"
+	"os"
 	"testing"
 )
 
@@ -59,7 +60,7 @@ func InitializeScenario(ctx *godog.ScenarioContext) {
 }
 
 func TestFeatures(t *testing.T) {
-	suite := godog.TestSuite{
+	suitePretty := godog.TestSuite{
 		ScenarioInitializer: InitializeScenario,
 		Options: &godog.Options{
 			Format:   "pretty",
@@ -68,7 +69,28 @@ func TestFeatures(t *testing.T) {
 		},
 	}
 
-	if suite.Run() != 0 {
+	if suitePretty.Run() != 0 {
+		t.Fatal("non-zero status returned, failed to run feature tests")
+	}
+
+	// Generate junit.xml file
+	junitFile, err := os.Create("junit.xml")
+	if err != nil {
+		t.Fatalf("failed to create junit.xml: %v", err)
+	}
+	defer junitFile.Close()
+
+	suiteJunit := godog.TestSuite{
+		ScenarioInitializer: InitializeScenario,
+		Options: &godog.Options{
+			Format:   "junit",
+			Paths:    []string{"tests/features"},
+			Output:   junitFile,
+			TestingT: t,
+		},
+	}
+
+	if suiteJunit.Run() != 0 {
 		t.Fatal("non-zero status returned, failed to run feature tests")
 	}
 }
