@@ -35,11 +35,22 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Get dependencies
+      - name: Restore cache
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+      - name: Install dependencies
         run: go mod download
 
       - name: Run tests
-        run: go test ./... -v
+        run: go test -v ./... | tee junit.xml
 
       - name: Upload JUnit Test Results
         uses: actions/upload-artifact@v4
@@ -63,4 +74,4 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           files: junit.xml
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
