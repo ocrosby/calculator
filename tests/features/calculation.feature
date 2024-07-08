@@ -3,6 +3,10 @@ Feature: Calculation
   As a user
   I need to be able to perform multiple calculations
 
+  Scenario: Default
+    Given calculator is cleared
+    Then the result should be 0
+
   Scenario: 0+0=0
     Given calculator is cleared
     When I press 0
