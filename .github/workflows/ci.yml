@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: '1.22.5'
 
@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: '1.22.5'
 
@@ -50,6 +50,9 @@ jobs:
   publish-test-results:
     needs: [lint, test]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
     steps:
       - name: Download Artifacts
         uses: actions/download-artifact@v4
@@ -60,3 +63,4 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           files: junit.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
