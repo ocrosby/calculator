@@ -1,4 +1,4 @@
-package calc
+package main
 
 type Calculator struct {
 	result int
