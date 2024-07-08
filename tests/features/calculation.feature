@@ -1,4 +1,4 @@
-Feature: Subtraction happens with addition
+Feature: Calculation
   In order to be able to do arithmetic
   As a user
   I need to be able to perform multiple calculations
